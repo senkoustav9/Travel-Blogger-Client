@@ -1,32 +1,31 @@
 .Settings{
     display: flex;
-}
-
-.settingsWrapper{
-    margin: 20px;
-    background-color: #fbfbfb;
-    flex: 9;
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
     padding: 40px;
-    font-family: 'Josefin', sans-serif;
+    background-color: white;
 }
 
 .settingsTitle{
-    font-family: 'Varela Round', sans-serif;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 15px;
+    color: rebeccapurple;
 }
 
 .settingsUpdateTitle{
     font-size: 30px;
-    margin-bottom: 20px;
-    color: lightcoral;
 }
 
 .settingsDeleteTitle{
-    color: red;
-    font-size: 12px;
+    font-size: 18px;
     cursor: pointer;
+}
+
+.settingsDeleteTitle:hover{
+    color: tomato;
 }
 
 .settingsForm{
@@ -34,32 +33,32 @@
     flex-direction: column;
 }
 
-.settingsPP{
+.settingsProfilePic{
     display: flex;
     align-items: center;
     margin: 10px 0px;
 }
 
-.settingsPP>img{
+.settingsProfilePic>img{
     width: 300px;
     height: 300px;
-    border-radius: 10px;
     margin: 5px;
+    border-radius: 10px;
     object-fit: cover;
 }
 
-.settingsPPIcon{
+.settingsProfilePicIcon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
     width: 45px;
     height: 45px;
     font-size: 25px;
-    border-radius: 25px;
-    background-color: lightcoral;
     color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    border-radius: 25px;
+    background-color: rebeccapurple;
     cursor: pointer;
-    margin: 10px;
 }
 
 .settingsForm>label{
@@ -68,32 +67,33 @@
 }
 
 .settingsForm>input{
-    color:gray;
-    font-size: 15px;
     margin: 5px 0 20px 0px;
     height: 30px;
+    font-size: 15px;
+    color:grey;
     border: none;
     border-bottom: 1px solid lightgray;
-    transition: border-bottom 0.5s ease-out;
+    transition: border-bottom 0.2s ease-out;
 }
 
 .settingsForm>input:focus{
     outline: none;
-    border-bottom: 1px solid skyblue;
+    border-bottom: 2px solid skyblue;
 }
 
 .settingsSubmit{
-    width: 200px;
     align-self: center;
+    margin: 20px;
+    height: 50px;
+    width: 200px;
+    font-size: 18px;
+    color: white;
     border: none;
     border-radius: 10px;
-    height: 50px;
     background-color: teal;
-    color: white;
-    font-size: 18px;
     cursor: pointer;
-    margin: 20px;
 }
+
 .settingsSubmit:hover{
-    background-color: rgb(53, 164, 153);
+    background-color: turquoise;
 }

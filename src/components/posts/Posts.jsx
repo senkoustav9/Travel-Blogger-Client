@@ -1,14 +1,12 @@
-import { NavLink } from "react-router-dom";
 import Post from "../post/Post";
 import "./Posts.css";
 
-const Posts = () => {
+const Posts = ({ posts }) => {
   return (
     <div className="Posts">
-      <NavLink to="/post/123" style={{textDecoration: "none", color: "inherit"}}><Post /></NavLink>
-      <NavLink to="/post/123" style={{textDecoration: "none", color: "inherit"}}><Post /></NavLink>
-      <NavLink to="/post/123" style={{textDecoration: "none", color: "inherit"}}><Post /></NavLink>
-      <NavLink to="/post/123" style={{textDecoration: "none", color: "inherit"}}><Post /></NavLink>
+      {posts.map((post) => (
+        <Post key={post._id} post={post} />
+      ))}
     </div>
   );
 };

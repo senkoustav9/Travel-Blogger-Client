@@ -1,12 +1,11 @@
 .register{
     height: calc(100vh - 50px);
-    background: linear-gradient(rgba(255,255,255,0.5),rgba(255,255,255,0.5)), url('https://images.pexels.com/photos/768472/pexels-photo-768472.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+    background: linear-gradient(rgba(255,255,255,0.5),rgba(255,255,255,0.5)), url('./login.jpeg');
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-size: cover;
-    font-family: 'Varela Round', sans-serif;
 }
 
 .registerTitle{

@@ -1,37 +1,130 @@
-import "./Settings.css";
-import "../../components/sidebar/SideBar";
-import SideBar from "../../components/sidebar/SideBar";
+// IMPORTING AXIOS
+import axios from "axios";
 
-export default function Settings() {
+// IMPORTING REACT TOASTS
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+// IMPORTING CSS FILE
+import "./Settings.css";
+
+// REACT HOOKS AND CONTEXT
+import { useContext, useState } from "react";
+import { Context } from "../../context/Context";
+
+function Settings() {
+  const PF = "http://localhost:5000/images/";
+  const { user, dispatch } = useContext(Context);
+
+  const [file, setFile] = useState(null);
+  const [username, setUsername] = useState(user.username);
+  const [email, setEmail] = useState(user.email);
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    dispatch({ type: "UPDATE_START" });
+
+    const updatedUser = {
+      userId: user._id,
+      username,
+      email,
+      password,
+    };
+
+    if (file) {
+      const data = new FormData();
+      const filename = Date.now() + file.name.split(" ").join("");
+      data.append("name", filename);
+      data.append("file", file);
+      updatedUser.profilePic = filename;
+
+      try {
+        await axios.post("/upload", data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    try {
+      const { data } = await axios.put("/user/update/" + user._id, updatedUser);
+      dispatch({ type: "UPDATE_SUCCESS", payload: data });
+      toast.success("User Updated Successfully");
+    } catch (error) {
+      dispatch({ type: "UPDATE_FAILURE" });
+      toast.error("Oops something went wrong");
+      console.log(error);
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axios.delete("/user/delete/" + user._id, {
+        data: { userId: user._id, username: user.username },
+      });
+      toast.success("User Deleted Successfully");
+      dispatch({ type: "LOGOUT" });
+    } catch (error) {
+      toast.error("Oops something went wrong");
+      console.log(error);
+    }
+  };
+
   return (
     <div className="Settings">
-      <div className="settingsWrapper">
-        <div className="settingsTitle">
-          <span className="settingsUpdateTitle">Update Account</span>
-          <span className="settingsDeleteTitle">Delete Account</span>
-        </div>
-        <form action="" className="settingsForm">
-          <label>Profile Picture</label>
-          <div className="settingsPP">
-            <img
-              src="https://images.pexels.com/photos/12285563/pexels-photo-12285563.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              alt=""
-            />
-            <label htmlFor="fileInput">
-              <i className="settingsPPIcon fa-solid fa-user"></i>
-            </label>
-            <input type="file" id="fileInput" style={{ display: "none" }} />
-          </div>
-            <label>Username</label>
-            <input type="text" placeholder="Safak" />
-            <label>Email</label>
-            <input type="email" placeholder="Safak@dev.io" />
-            <label>Password</label>
-            <input type="password" />
-            <button className="settingsSubmit">Update</button>
-        </form>
+      <div className="settingsTitle">
+        <span className="settingsUpdateTitle">Update Account</span>
+        <span className="settingsDeleteTitle" onClick={handleDelete}>
+          Delete Account
+        </span>
       </div>
-      <SideBar />
+      <form action="" className="settingsForm" onSubmit={handleSubmit}>
+        <label>Profile Picture</label>
+        <div className="settingsProfilePic">
+          <img
+            src={
+              file
+                ? URL.createObjectURL(file)
+                : user.profilePic
+                ? PF + user.profilePic
+                : "./default.jpg"
+            }
+            alt=""
+          />
+          <label htmlFor="fileInput">
+            <i className="settingsProfilePicIcon fa-solid fa-user"></i>
+          </label>
+          <input
+            type="file"
+            id="fileInput"
+            style={{ display: "none" }}
+            onChange={(e) => setFile(e.target.files[0])}
+          />
+        </div>
+
+        <label>Username</label>
+        <input
+          type="text"
+          placeholder={user.username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+
+        <label>Email</label>
+        <input
+          type="email"
+          placeholder={user.email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <label>Password</label>
+        <input type="password" onChange={(e) => setPassword(e.target.value)} />
+
+        <button className="settingsSubmit" type="submit">
+          Update
+        </button>
+      </form>
     </div>
   );
 }
+export default Settings;

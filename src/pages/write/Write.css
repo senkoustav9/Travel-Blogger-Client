@@ -1,10 +1,9 @@
 .Write{
-    /* background-color: #fbfbfb; */
-    padding-top: 50px;
     display: flex;
     flex-direction: column ;
     align-items: center;
     justify-content: center;
+    padding-top: 50px;
     margin-bottom: 50px;
 }
 
@@ -19,31 +18,35 @@
 }
 
 .writeFormGroup{
-    /* margin-left: 150px; */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .writeIcon{
-    width: 25px;
-    height:25px;
-    border-radius: 50%;
-    border: 1px solid #888;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 25px;
+    height:25px;
+    border-radius: 50%;
+    border: 1px solid grey;
     font-size: 20px;
-    color: #888;
+    color: grey;
     cursor: pointer;
 }
 
 .writeInput{
-    font-size: 30px;
-    border: none;
+    margin: 5px;
     padding: 20px;
     width: 70vw;
-    margin: 5px;
+    font-size: 30px;
+    border: none;
+    color: grey;
+}
+
+.writeInputTitle{
+    color: rebeccapurple;
 }
 
 .writeInput:focus{
@@ -57,16 +60,16 @@
 
 .writeSubmit{
     position: absolute;
-    width: 100px;
     top: 20px;
     right: 50px;
-    color: white;
-    background-color: teal;
+    width: 100px;
     padding: 10px;
+    font-size: 16px;
+    color: white;
     border: none;
     border-radius: 5px;
+    background-color: teal;
     cursor: pointer;
-    font-size: 16px;
 }
 
 .writeSubmit:hover{
