@@ -23,17 +23,15 @@ export default function Register() {
         email,
         password,
       });     
-      const welcome = () => toast.success(`Registration complete, ${username} !`);
-      welcome();
-
+      toast.success(`Registration complete, ${username} !`);
+      
       setTimeout(() => {
         res.data && window.location.replace("/login")
-      }, "3000")
+      }, "2000")
 
     } catch (error) {
       console.log(error);
-      const err = () => toast.error("Oops something went wrong");
-      err();
+      toast.error("Oops something went wrong");
     }
   };
 

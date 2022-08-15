@@ -12,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 // React Hooks 
 import { useContext } from "react";
+
 // Context
 import { Context } from "./context/Context";
 
@@ -31,9 +32,8 @@ function App() {
   return (
     <Router>
       <TopBar />
-      <ToastContainer autoClose={1500} />
+      <ToastContainer autoClose={1000} />
       <Routes>
-
         <Route path="/" element={<Home />} />
 
         <Route path="/write" element={user ? <Write /> : <Login />} />

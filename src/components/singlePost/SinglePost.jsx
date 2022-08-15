@@ -25,7 +25,7 @@ export default function SinglePost() {
       setPost(data);
       setTitle(data.title);
       setDescription(data.description);
-    };
+    }; 
 
     getPost();
   }, [id]);

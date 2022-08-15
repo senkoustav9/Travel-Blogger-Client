@@ -23,11 +23,12 @@ export default function Login() {
       });
 
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
-      toast.success(`Welcome, ${res.data.username} !`);
-    
-    } catch (error) {
+      toast.success(`Welcome, ${res.data.username}!`);
+    } 
+    catch (error) {
       dispatch({ type: "LOGIN_FAILURE" });
-      toast.error(`Oops something went wrong!`);
+      console.log(error.response);
+      toast.error("Login Failed!");
     }
   };
 

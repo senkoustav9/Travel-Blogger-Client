@@ -1,14 +1,10 @@
-// IMPORTING AXIOS
 import axios from "axios";
 
-// IMPORTING REACT TOASTS
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// IMPORTING CSS FILE
 import "./Settings.css";
 
-// REACT HOOKS AND CONTEXT
 import { useContext, useState } from "react";
 import { Context } from "../../context/Context";
 
@@ -21,17 +17,19 @@ function Settings() {
   const [email, setEmail] = useState(user.email);
   const [password, setPassword] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
 
     dispatch({ type: "UPDATE_START" });
 
-    const updatedUser = {
+    let updatedUser = {
       userId: user._id,
       username,
-      email,
-      password,
+      email
     };
+
+    if(password !== "")
+      updatedUser.password = password;
 
     if (file) {
       const data = new FormData();
@@ -79,7 +77,7 @@ function Settings() {
           Delete Account
         </span>
       </div>
-      <form action="" className="settingsForm" onSubmit={handleSubmit}>
+      <form action="" className="settingsForm" onSubmit={handleUpdate}>
         <label>Profile Picture</label>
         <div className="settingsProfilePic">
           <img
@@ -106,14 +104,14 @@ function Settings() {
         <label>Username</label>
         <input
           type="text"
-          placeholder={user.username}
+          value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
 
         <label>Email</label>
         <input
           type="email"
-          placeholder={user.email}
+          value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
 

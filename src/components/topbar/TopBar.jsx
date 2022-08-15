@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useContext } from 'react';
 import { Context } from '../../context/Context';
 
-import './TopBar.css'
+import './TopBar.css';
 
 const TopBar = () => {
   const {user,dispatch} = useContext(Context);
