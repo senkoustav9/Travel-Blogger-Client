@@ -21,7 +21,7 @@ const TopBar = () => {
   return (
     <div className="TopBar">
         <div className="topLeft">
-          <div className="topIcon">Tech BLOGS</div>
+          <div className="topIcon">Travel Blogger</div>
         </div>
         <div className="topCenter">
             <ul className="topList">

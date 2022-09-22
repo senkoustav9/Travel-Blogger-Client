@@ -10,6 +10,7 @@
     top: 30%;
     font-size: 40px;
     letter-spacing: 30px;
+    text-shadow: 2px 2px 3px #000000;
 }
 
 .headerTitleLg{
@@ -17,6 +18,7 @@
     top: 40%;
     font-size: 100px;
     letter-spacing: 3px;
+    text-shadow: 2px 2px 3px #000000;
 }
 
 .headerImg{
